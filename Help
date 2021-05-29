@@ -1,0 +1,86 @@
+Nvme discovery
+==============
+nvme discover -t tcp -a 192.168.100.167 -s 4420 -q default
+
+Nvme connect
+============
+nvme connect -t tcp -a 192.168.100.167 -s 4420 -q default -n nqn.2020-01.io.spdk:cnode1
+
+Nvme list
+=========
+nvme list
+
+Disk format
+===========
+mkfs.ext3  /dev/nvme0n1
+
+Mount Disk
+==========
+mount  /dev/nvme0n1  /mnt
+
+iozone
+======
+iozone  -a -I -+d
+
+Nvme core dump
+==============
+echo 'core.%p' > /proc/sys/kernel/core_pattern
+
+SCSI List
+=========
+lsscsi
+
+iSCSI session
+=============
+iscsiadm -m session -P 3
+
+iSCSI Logout all sessions
+=========================
+iscsiadm -m node -u
+
+Verify Traffic
+==============
+watch -n1 -d iostat
+
+git signing
+=============
+git commit -s -v
+
+git generate patch
+==================
+git format-patch -1
+
+git reset last commit
+======================
+git reset --hard HEAD~1
+
+git reset HEAD~
+
+sparse check
+============
+# make C=2 M=drivers/net/ethernet/chelsio/cxgb4
+
+coccicheck
+===========
+# make coccicheck M=drivers/net/ethernet/chelsio/cxgb4
+
+send-email to netdev
+====================
+# git send-email 0001-cxgb4-Add-support-to-flash-firmware-config-image.patch --cc davem@davemloft.net --cc xxx@gmail.com --cc yyy@gmail.com --to netdev@vger.kernel.org
+
+send-email to netdev using cover-letter
+========================================
+# git send-email -2 --subject-prefix="PATCH net" --cover-letter --annotate --cc davem@davemloft.net --cc xxx@chelsio.com --cc yyy@chelsio.com --to netdev@vger.kernel.org
+
+
+Format patch
+=============
+git format-patch --subject-prefix="PATCH net-next" -1 HEAD
+
+commit message change
+====================
+git commit --amend
+
+applying git patch
+===================
+git am 0001-*.patch
