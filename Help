@@ -84,3 +84,79 @@ git commit --amend
 applying git patch
 ===================
 git am 0001-*.patch
+
+hg clone
+========
+hg clone <PATH>
+
+hg diff
+=======
+hg diff -p
+
+hg status
+========
+hg status
+
+hg log
+======
+hg log
+
+update
+======
+hg update -r <change id>
+
+hg export
+=========
+hg export -r <change id> -o %n-%m
+
+hg blame
+========
+hg blame -r <change id> filename
+
+hg log
+======
+hg log -pvr <change id>
+hg log date filename
+
+hg configuration
+================
+hg config --edit (1st time config file creation)
+
+hg apply patch
+==============
+hg import <patch from hg repo>  --> to apply an hg patch with commit message
+
+hg edit last commit message
+===========================
+hg commit --amend
+
+To Push a commit
+================
+#hg in
+#hg out
+#hg tip,hg par,hg heads(All should point to same hg out)
+#hg push
+
+hg email
+========
+#hg email -d -g --plain -t yyy@xxx.com -r tip --flag V3
+#hg email -d -g --plain -t mmm@nnn.com -r tip --subject "Bug: xxxxx"
+
+Netconsole
+==========
+
+Panic machine or issue machine
+===============================
+				Local <Port number>@IP/dev name Remote <Port Number>@IP/MAC address
+	modprobe -v netconsole netconsole=50000@10.xx.xx.xx/enp6s0,50000@10.xx.xx.xx/yy:yy:yy:zz:zz:zz
+
+Remote machine
+==============
+
+	nc -ul <portnum> | tee <panicmachine> &
+
+Test
+=====
+	Run at issue machine and verify remote machines had any log in dmesg
+	--------------------------------------------------------------------
+	echo 9 > /proc/sysrq-trigger
