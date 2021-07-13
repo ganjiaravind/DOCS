@@ -160,3 +160,28 @@ Test
 	Run at issue machine and verify remote machines had any log in dmesg
 	--------------------------------------------------------------------
 	echo 9 > /proc/sysrq-trigger
+	
+yum configuration steps
+=======================
+#[InstallMedia]
+#name=Red Hat Enterprise Linux 8.4.0
+#mediaid=None
+#metadata_expire=-1
+#gpgcheck=0
+#cost=500
+
+[rhel8.4-BaseOS]
+name=BaseOS - $os $releasever $arch $basearch
+baseurl=file:///mnt/BaseOS/
+enabled=1
+gpgcheck=1
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-beta,file:///etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-release
+
+
+[rhel8.4-AppStream]
+name=AppStream - $os $releasever $arch $basearch
+baseurl=file:///mnt/AppStream/
+enabled=1
+gpgcheck=1
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-beta,file:///etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-release
+
